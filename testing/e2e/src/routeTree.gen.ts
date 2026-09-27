@@ -78,6 +78,7 @@ import { Route as ApiOpenaiImage25ModelsRouteImport } from './routes/api.openai-
 import { Route as ApiOpenaiCompletedResponseTextRouteImport } from './routes/api.openai-completed-response-text'
 import { Route as ApiNonStreamingRunErrorRouteImport } from './routes/api.non-streaming-run-error'
 import { Route as ApiMultimodalToolResultWireRouteImport } from './routes/api.multimodal-tool-result-wire'
+import { Route as ApiMoonshotUsageDetailsRouteImport } from './routes/api.moonshot-usage-details'
 import { Route as ApiMistralStrictToolNullWireRouteImport } from './routes/api.mistral-strict-tool-null-wire'
 import { Route as ApiMiddlewareTestRouteImport } from './routes/api.middleware-test'
 import { Route as ApiMessageIdsRouteImport } from './routes/api.message-ids'
@@ -494,6 +495,11 @@ const ApiMultimodalToolResultWireRoute =
     path: '/api/multimodal-tool-result-wire',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiMoonshotUsageDetailsRoute = ApiMoonshotUsageDetailsRouteImport.update({
+  id: '/api/moonshot-usage-details',
+  path: '/api/moonshot-usage-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiMistralStrictToolNullWireRoute =
   ApiMistralStrictToolNullWireRouteImport.update({
     id: '/api/mistral-strict-tool-null-wire',
@@ -849,6 +855,7 @@ export interface FileRoutesByFullPath {
   '/api/message-ids': typeof ApiMessageIdsRoute
   '/api/middleware-test': typeof ApiMiddlewareTestRoute
   '/api/mistral-strict-tool-null-wire': typeof ApiMistralStrictToolNullWireRoute
+  '/api/moonshot-usage-details': typeof ApiMoonshotUsageDetailsRoute
   '/api/multimodal-tool-result-wire': typeof ApiMultimodalToolResultWireRoute
   '/api/non-streaming-run-error': typeof ApiNonStreamingRunErrorRoute
   '/api/openai-completed-response-text': typeof ApiOpenaiCompletedResponseTextRoute
@@ -973,6 +980,7 @@ export interface FileRoutesByTo {
   '/api/message-ids': typeof ApiMessageIdsRoute
   '/api/middleware-test': typeof ApiMiddlewareTestRoute
   '/api/mistral-strict-tool-null-wire': typeof ApiMistralStrictToolNullWireRoute
+  '/api/moonshot-usage-details': typeof ApiMoonshotUsageDetailsRoute
   '/api/multimodal-tool-result-wire': typeof ApiMultimodalToolResultWireRoute
   '/api/non-streaming-run-error': typeof ApiNonStreamingRunErrorRoute
   '/api/openai-completed-response-text': typeof ApiOpenaiCompletedResponseTextRoute
@@ -1098,6 +1106,7 @@ export interface FileRoutesById {
   '/api/message-ids': typeof ApiMessageIdsRoute
   '/api/middleware-test': typeof ApiMiddlewareTestRoute
   '/api/mistral-strict-tool-null-wire': typeof ApiMistralStrictToolNullWireRoute
+  '/api/moonshot-usage-details': typeof ApiMoonshotUsageDetailsRoute
   '/api/multimodal-tool-result-wire': typeof ApiMultimodalToolResultWireRoute
   '/api/non-streaming-run-error': typeof ApiNonStreamingRunErrorRoute
   '/api/openai-completed-response-text': typeof ApiOpenaiCompletedResponseTextRoute
@@ -1224,6 +1233,7 @@ export interface FileRouteTypes {
     | '/api/message-ids'
     | '/api/middleware-test'
     | '/api/mistral-strict-tool-null-wire'
+    | '/api/moonshot-usage-details'
     | '/api/multimodal-tool-result-wire'
     | '/api/non-streaming-run-error'
     | '/api/openai-completed-response-text'
@@ -1348,6 +1358,7 @@ export interface FileRouteTypes {
     | '/api/message-ids'
     | '/api/middleware-test'
     | '/api/mistral-strict-tool-null-wire'
+    | '/api/moonshot-usage-details'
     | '/api/multimodal-tool-result-wire'
     | '/api/non-streaming-run-error'
     | '/api/openai-completed-response-text'
@@ -1472,6 +1483,7 @@ export interface FileRouteTypes {
     | '/api/message-ids'
     | '/api/middleware-test'
     | '/api/mistral-strict-tool-null-wire'
+    | '/api/moonshot-usage-details'
     | '/api/multimodal-tool-result-wire'
     | '/api/non-streaming-run-error'
     | '/api/openai-completed-response-text'
@@ -1597,6 +1609,7 @@ export interface RootRouteChildren {
   ApiMessageIdsRoute: typeof ApiMessageIdsRoute
   ApiMiddlewareTestRoute: typeof ApiMiddlewareTestRoute
   ApiMistralStrictToolNullWireRoute: typeof ApiMistralStrictToolNullWireRoute
+  ApiMoonshotUsageDetailsRoute: typeof ApiMoonshotUsageDetailsRoute
   ApiMultimodalToolResultWireRoute: typeof ApiMultimodalToolResultWireRoute
   ApiNonStreamingRunErrorRoute: typeof ApiNonStreamingRunErrorRoute
   ApiOpenaiCompletedResponseTextRoute: typeof ApiOpenaiCompletedResponseTextRoute
@@ -2122,6 +2135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiMultimodalToolResultWireRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/moonshot-usage-details': {
+      id: '/api/moonshot-usage-details'
+      path: '/api/moonshot-usage-details'
+      fullPath: '/api/moonshot-usage-details'
+      preLoaderRoute: typeof ApiMoonshotUsageDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/mistral-strict-tool-null-wire': {
       id: '/api/mistral-strict-tool-null-wire'
       path: '/api/mistral-strict-tool-null-wire'
@@ -2635,6 +2655,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiMessageIdsRoute: ApiMessageIdsRoute,
   ApiMiddlewareTestRoute: ApiMiddlewareTestRoute,
   ApiMistralStrictToolNullWireRoute: ApiMistralStrictToolNullWireRoute,
+  ApiMoonshotUsageDetailsRoute: ApiMoonshotUsageDetailsRoute,
   ApiMultimodalToolResultWireRoute: ApiMultimodalToolResultWireRoute,
   ApiNonStreamingRunErrorRoute: ApiNonStreamingRunErrorRoute,
   ApiOpenaiCompletedResponseTextRoute: ApiOpenaiCompletedResponseTextRoute,
