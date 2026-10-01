@@ -381,7 +381,12 @@ export interface ModelMessage<
   name?: string
   toolCalls?: Array<ToolCall>
   toolCallId?: string
-  thinking?: Array<{ content: string; signature?: string }>
+  /**
+   * Signed thinking to send back to the provider. `redacted: true` marks a
+   * block the provider encrypted: `content` is empty and `signature` holds its
+   * opaque data. See `ThinkingPart.signature` for the planned rename.
+   */
+  thinking?: Array<{ content: string; signature?: string; redacted?: boolean }>
   /** Error reported by an AG-UI tool message. */
   error?: string
   /** Optional AG-UI message metadata. TanStack-owned fields live under `tanstack`. */
@@ -465,7 +470,20 @@ export interface ThinkingPart {
   type: 'thinking'
   content: string
   stepId?: string
+  /**
+   * The provider's opaque reasoning artefact, sent back unchanged: an
+   * Anthropic signature, Anthropic redacted data, or OpenAI encrypted content.
+   * TODO(#1581): rename to `encryptedValue` to match AG-UI's `ReasoningMessage`.
+   * Renaming breaks stored messages, so it needs a read shim for `signature`.
+   */
   signature?: string
+  /**
+   * The provider encrypted this thinking block (Anthropic `redacted_thinking`).
+   * `content` is empty, and `signature` holds the opaque data that goes back
+   * to the provider unchanged. On the AG-UI wire, the reasoning message id
+   * starts with `redacted_thinking-` instead.
+   */
+  redacted?: boolean
 }
 
 /**
