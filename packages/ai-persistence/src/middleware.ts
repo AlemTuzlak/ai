@@ -1188,7 +1188,17 @@ function builtInArtifactDescriptors(
     }
   }
 
-  if (activity === 'video' && typeof output.url === 'string') {
+  if (activity === 'video' && output.body instanceof ReadableStream) {
+    // Provider bytes with no URL: stream them straight into the blob store.
+    descriptors.push({
+      role: 'output',
+      path: 'video',
+      mediaType: 'video',
+      mimeType: stringField(output, 'contentType') ?? 'video/mp4',
+      bytes: output.body,
+      jobId: stringField(output, 'jobId'),
+    })
+  } else if (activity === 'video' && typeof output.url === 'string') {
     descriptors.push({
       role: 'output',
       path: 'video',
@@ -1688,7 +1698,9 @@ function applyDurableMediaUrls(
         next = { ...next, images: cloned }
       }
     } else if (path === 'video') {
-      next = { ...next, url: ref.url }
+      // The stream is now in the blob store; only the durable URL goes on.
+      const { body: _body, contentType: _contentType, ...rest } = next
+      next = { ...rest, url: ref.url }
     } else if (path === 'audio' && objectValue(next.audio)) {
       next = { ...next, audio: { ...objectValue(next.audio), url: ref.url } }
     }
