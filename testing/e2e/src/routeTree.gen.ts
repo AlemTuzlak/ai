@@ -53,6 +53,7 @@ import { Route as ApiAnthropicSkillsWireRouteImport } from './routes/api.anthrop
 import { Route as ApiAnthropicSonnet55WireRouteImport } from './routes/api.anthropic-skills-wire'
 import { Route as ApiAnthropicStructuredUsageRouteImport } from './routes/api.anthropic-structured-usage'
 import { Route as ApiAnthropicThinkingOrderWireRouteImport } from './routes/api.anthropic-thinking-order-wire'
+import { Route as ApiAnthropicTruncatedToolInputWireRouteImport } from './routes/api.anthropic-truncated-tool-input-wire'
 import { Route as ApiArktypeToolWireRouteImport } from './routes/api.arktype-tool-wire'
 import { Route as ApiAudioRouteImport } from './routes/api.audio'
 import { Route as ApiBedrockConverseCacheRouteImport } from './routes/api.bedrock-converse-cache'
@@ -369,6 +370,12 @@ const ApiAnthropicThinkingOrderWireRoute =
   ApiAnthropicThinkingOrderWireRouteImport.update({
     id: '/api/anthropic-thinking-order-wire',
     path: '/api/anthropic-thinking-order-wire',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiAnthropicTruncatedToolInputWireRoute =
+  ApiAnthropicTruncatedToolInputWireRouteImport.update({
+    id: '/api/anthropic-truncated-tool-input-wire',
+    path: '/api/anthropic-truncated-tool-input-wire',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ApiArktypeToolWireRoute = ApiArktypeToolWireRouteImport.update({
@@ -872,6 +879,7 @@ export interface FileRoutesByFullPath {
   '/api/anthropic-sonnet-5-5-wire': typeof ApiAnthropicSonnet55WireRoute
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/anthropic-thinking-order-wire': typeof ApiAnthropicThinkingOrderWireRoute
+  '/api/anthropic-truncated-tool-input-wire': typeof ApiAnthropicTruncatedToolInputWireRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
   '/api/bedrock-converse-cache': typeof ApiBedrockConverseCacheRoute
@@ -1005,6 +1013,7 @@ export interface FileRoutesByTo {
   '/api/anthropic-sonnet-5-5-wire': typeof ApiAnthropicSonnet55WireRoute
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/anthropic-thinking-order-wire': typeof ApiAnthropicThinkingOrderWireRoute
+  '/api/anthropic-truncated-tool-input-wire': typeof ApiAnthropicTruncatedToolInputWireRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
   '/api/bedrock-converse-cache': typeof ApiBedrockConverseCacheRoute
@@ -1139,6 +1148,7 @@ export interface FileRoutesById {
   '/api/anthropic-sonnet-5-5-wire': typeof ApiAnthropicSonnet55WireRoute
   '/api/anthropic-structured-usage': typeof ApiAnthropicStructuredUsageRoute
   '/api/anthropic-thinking-order-wire': typeof ApiAnthropicThinkingOrderWireRoute
+  '/api/anthropic-truncated-tool-input-wire': typeof ApiAnthropicTruncatedToolInputWireRoute
   '/api/arktype-tool-wire': typeof ApiArktypeToolWireRoute
   '/api/audio': typeof ApiAudioRouteWithChildren
   '/api/bedrock-converse-cache': typeof ApiBedrockConverseCacheRoute
@@ -1274,6 +1284,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-sonnet-5-5-wire'
     | '/api/anthropic-structured-usage'
     | '/api/anthropic-thinking-order-wire'
+    | '/api/anthropic-truncated-tool-input-wire'
     | '/api/arktype-tool-wire'
     | '/api/audio'
     | '/api/bedrock-converse-cache'
@@ -1407,6 +1418,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-sonnet-5-5-wire'
     | '/api/anthropic-structured-usage'
     | '/api/anthropic-thinking-order-wire'
+    | '/api/anthropic-truncated-tool-input-wire'
     | '/api/arktype-tool-wire'
     | '/api/audio'
     | '/api/bedrock-converse-cache'
@@ -1540,6 +1552,7 @@ export interface FileRouteTypes {
     | '/api/anthropic-sonnet-5-5-wire'
     | '/api/anthropic-structured-usage'
     | '/api/anthropic-thinking-order-wire'
+    | '/api/anthropic-truncated-tool-input-wire'
     | '/api/arktype-tool-wire'
     | '/api/audio'
     | '/api/bedrock-converse-cache'
@@ -1674,6 +1687,7 @@ export interface RootRouteChildren {
   ApiAnthropicSonnet55WireRoute: typeof ApiAnthropicSonnet55WireRoute
   ApiAnthropicStructuredUsageRoute: typeof ApiAnthropicStructuredUsageRoute
   ApiAnthropicThinkingOrderWireRoute: typeof ApiAnthropicThinkingOrderWireRoute
+  ApiAnthropicTruncatedToolInputWireRoute: typeof ApiAnthropicTruncatedToolInputWireRoute
   ApiArktypeToolWireRoute: typeof ApiArktypeToolWireRoute
   ApiAudioRoute: typeof ApiAudioRouteWithChildren
   ApiBedrockConverseCacheRoute: typeof ApiBedrockConverseCacheRoute
@@ -2067,6 +2081,13 @@ declare module '@tanstack/react-router' {
       path: '/api/anthropic-thinking-order-wire'
       fullPath: '/api/anthropic-thinking-order-wire'
       preLoaderRoute: typeof ApiAnthropicThinkingOrderWireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/anthropic-truncated-tool-input-wire': {
+      id: '/api/anthropic-truncated-tool-input-wire'
+      path: '/api/anthropic-truncated-tool-input-wire'
+      fullPath: '/api/anthropic-truncated-tool-input-wire'
+      preLoaderRoute: typeof ApiAnthropicTruncatedToolInputWireRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/arktype-tool-wire': {
@@ -2784,6 +2805,8 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAnthropicSonnet55WireRoute: ApiAnthropicSonnet55WireRoute,
   ApiAnthropicStructuredUsageRoute: ApiAnthropicStructuredUsageRoute,
   ApiAnthropicThinkingOrderWireRoute: ApiAnthropicThinkingOrderWireRoute,
+  ApiAnthropicTruncatedToolInputWireRoute:
+    ApiAnthropicTruncatedToolInputWireRoute,
   ApiArktypeToolWireRoute: ApiArktypeToolWireRoute,
   ApiAudioRoute: ApiAudioRouteWithChildren,
   ApiBedrockConverseCacheRoute: ApiBedrockConverseCacheRoute,
@@ -2873,7 +2896,9 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
+
 import type { createStart } from '@tanstack/react-start'
+
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
