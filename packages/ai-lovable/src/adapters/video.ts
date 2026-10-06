@@ -174,7 +174,9 @@ export class LovableVideoAdapter<
     }
   }
 
-  async getVideo(jobId: string): Promise<VideoUrlResult | VideoStreamResult> {
+  override async getVideo(
+    jobId: string,
+  ): Promise<VideoUrlResult | VideoStreamResult> {
     try {
       const videoInfo = await this.client.videos.retrieve(jobId)
       const directUrl = videoResourceUrl(videoInfo)

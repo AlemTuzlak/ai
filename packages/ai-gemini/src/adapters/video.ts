@@ -593,7 +593,7 @@ export class GeminiVideoAdapter<
     }
   }
 
-  async getVideo(jobId: string): Promise<VideoUrlResult> {
+  override async getVideo(jobId: string): Promise<VideoUrlResult> {
     if (isInteractionsVideoModel(this.model)) {
       return await this.getInteractionsVideoUrl(jobId)
     }

@@ -210,7 +210,9 @@ export class OpenAIVideoAdapter<
     }
   }
 
-  async getVideo(jobId: string): Promise<VideoUrlResult | VideoStreamResult> {
+  override async getVideo(
+    jobId: string,
+  ): Promise<VideoUrlResult | VideoStreamResult> {
     try {
       const videosClient = this.getVideosClient()
 

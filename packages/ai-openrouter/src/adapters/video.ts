@@ -324,7 +324,9 @@ export class OpenRouterVideoAdapter<
     }
   }
 
-  async getVideo(jobId: string): Promise<VideoUrlResult | VideoStreamResult> {
+  override async getVideo(
+    jobId: string,
+  ): Promise<VideoUrlResult | VideoStreamResult> {
     const response = await this.client.videoGeneration.getGeneration({ jobId })
     const status = mapStatus(response.status)
     if (status === 'failed') {
