@@ -1535,6 +1535,13 @@ export class StreamProcessor {
             this.toolCallToMessage.set(toolCallId, messageId)
           }
         }
+
+        // `structured-output.start` can arrive before this event and mark
+        // the pending id. Keep the mark on the remapped id so the JSON deltas
+        // go into the structured-output part, not a text part.
+        if (this.structuredMessageIds.delete(pendingId)) {
+          this.structuredMessageIds.add(messageId)
+        }
       }
 
       // Ensure state exists
